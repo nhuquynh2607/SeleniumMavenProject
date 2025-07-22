@@ -170,6 +170,12 @@
       <artifactId>selenium-java</artifactId>
       <version>4.33.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.11.0</version>
+      <scope>compile</scope>
+    </dependency>
 
   </dependencies>
 
