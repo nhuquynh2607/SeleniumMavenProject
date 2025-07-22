@@ -11,7 +11,7 @@ public class BTVN_Day7 {
                 new NhanVien("Cường")
         };
 
-        System.out.println("Danh sách nhân viên:");
+        System.out.println("Danh sách các nhân viên:");
         for (NhanVien nv : danhSach) {
             System.out.println("- " + nv.getTen());
         }
