@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class TS_PracticeLocateElement extends commonBase {
+    //Bài tập 1
     @Test
     public void getElementByUserEmail()
     {
