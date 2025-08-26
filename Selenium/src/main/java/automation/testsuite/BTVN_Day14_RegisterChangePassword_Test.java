@@ -13,16 +13,32 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.Random;
 
 import static org.testng.Assert.assertTrue;
 
 public class BTVN_Day14_RegisterChangePassword_Test extends commonBase {
+
+    static String baseEmail = "testBase";
+
+    public static String generateRandomString(int length) {
+        String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder email = new StringBuilder(length);
+        Random random = new Random();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(characterSet.length());
+            email.append(characterSet.charAt(index));
+        }
+        return baseEmail + email.toString() + "gmail.com";
+    }
+
     @BeforeTest
     public void openBrowser() {
         driver = initFirefoxDriver(CT_PageURL.ALADA_URL_Register);
     }
 
-    @Test
+    @Test(priority = 1)
     public void registerSuccessfully() {
         BTVN_Day14_RegisterChangePassword_Factory factory = new BTVN_Day14_RegisterChangePassword_Factory(driver);
         factory.registerFunction("Quỳnh", "nhuquynh12@gmail.com", "nhuquynh12@gmail.com", "123456", "123456", "0987654321");
@@ -31,7 +47,7 @@ public class BTVN_Day14_RegisterChangePassword_Test extends commonBase {
         assertTrue(khoaHocCuaToi.isDisplayed());
     }
 
-    @Test
+    @Test (priority = 2)
     public void loginSuccessfully()
     {
         WebElement login = driver.findElement(By.xpath("//a[text()='Đăng Nhập']"));
@@ -43,7 +59,7 @@ public class BTVN_Day14_RegisterChangePassword_Test extends commonBase {
         assertTrue(khoaHocCuaToi.isDisplayed());
     }
 
-    @Test
+    @Test(priority = 3)
     public void changePassword()
     {
         loginSuccessfully();
@@ -51,7 +67,7 @@ public class BTVN_Day14_RegisterChangePassword_Test extends commonBase {
         factory.changePasswordFunction("123456", "12345678", "12345678");
     }
 
-    @Test
+    @Test (priority = 4)
     public void loginAgainChangePassword()
     {
         WebElement login = driver.findElement(By.xpath("//a[text()='Đăng Nhập']"));
