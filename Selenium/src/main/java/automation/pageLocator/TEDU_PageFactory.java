@@ -30,6 +30,7 @@ public class TEDU_PageFactory {
     @FindBy(xpath = "//button[@class='button-search btn btn-primary']") WebElement searchButton;
     @FindBy(id = "onesignal-slidedown-cancel-button") WebElement buttonLater;
 
+
     public TEDU_PageFactory(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -63,5 +64,14 @@ public class TEDU_PageFactory {
         searchBox.sendKeys(keyword);
         searchButton.click();
         Thread.sleep(3000); // chờ kết quả tìm kiếm
+    }
+
+    public void search(String text) throws InterruptedException
+    {
+        buttonLater.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].value='" + text +"';", searchBox);
+        js.executeScript("arguments[0].click();", searchButton);
+        Thread.sleep(3000);
     }
 }

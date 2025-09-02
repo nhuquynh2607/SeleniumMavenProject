@@ -46,6 +46,42 @@ public class commonBase {
         return driver.findElement(locator);
     }
 
+    //Wrap Phương thức isDisplay
+    public boolean isElementDisplay(By locator)
+    {
+        try {
+            WebElement element = getElementPresentDOM(locator);
+            return element.isDisplayed();
+        }catch (NoSuchElementException ex1){
+            return false;
+        }
+        catch (TimeoutException ex2){
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+
+    }
+
+    //Wrap Phương thức click bằng isElementClickAble
+    public void click (By locator)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement element = getElementPresentDOM(locator);
+        element.click();
+    }
+
+    //Wrap Phương thức type
+    public void type(By locator, String value)
+    {
+        WebElement webElement = getElementPresentDOM(locator);
+        webElement.clear();
+        webElement.sendKeys(value);
+    }
+
     public static void closeDriver()
     {
         if(driver!=null)
