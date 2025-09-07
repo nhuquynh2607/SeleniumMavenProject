@@ -42,15 +42,11 @@ public class BTVN_Day16_Factory {
 
     public void AddNewFunction(String ma, String ten)
     {
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].click();", buttonQl_KLV);
-//        js.executeScript("arguments[0].click();", buttonThemMoi);
         buttonQl_KLV.click();
         buttonThemMoi.click();
         inputMa.sendKeys(ma);
         inputTen.sendKeys(ten);
         btnLuu.click();
-//        js.executeScript("arguments[0].click();", btnLuu);
     }
 
     public void search(String text) throws InterruptedException

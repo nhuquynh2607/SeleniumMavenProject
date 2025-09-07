@@ -17,7 +17,7 @@ public class commonBase {
     public static WebDriver driver;
     public WebDriver initChromeDriver(String Url)
     {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\driver\\chrome\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get(Url);
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
@@ -72,6 +72,13 @@ public class commonBase {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         WebElement element = getElementPresentDOM(locator);
         element.click();
+    }
+
+    public void clickByJS(By locator)
+    {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = driver.findElement(locator);
+        js.executeScript("arguments[0].click();", element);
     }
 
     //Wrap Phương thức type
