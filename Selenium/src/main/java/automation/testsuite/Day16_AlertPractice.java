@@ -4,6 +4,8 @@ import automation.common.commonBase;
 import automation.constant.CT_PageURL;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
@@ -11,8 +13,11 @@ import static org.testng.Assert.assertTrue;
 
 public class Day16_AlertPractice extends commonBase {
     @BeforeMethod
-    public void openBrowser(){
-        driver = initChromeDriver(CT_PageURL.ALERT_URL1);
+    @Parameters("browser")
+    public void openBrowser(@Optional("firefox") String browser) {
+        driver = setupDriver(browser);
+        driver.get(CT_PageURL.ALERT_URL1);
+//        driver = initEdgeDriver(CT_PageURL.MEDIAMART_URL);
     }
 
     @Test

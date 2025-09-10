@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -14,8 +15,11 @@ import static org.testng.Assert.assertEquals;
 
 public class Day16_AlertPractice2 extends commonBase {
     @BeforeMethod
-    public void openBrowser(){
-        driver = initChromeDriver(CT_PageURL.ALERT_URL2);
+    @Parameters("browser")
+    public void openBrowser(String browser) {
+        driver = setupDriver(browser);
+        driver.get(CT_PageURL.ALERT_URL2);
+//        driver = initEdgeDriver(CT_PageURL.MEDIAMART_URL);
     }
 
     @Test

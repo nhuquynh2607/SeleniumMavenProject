@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -18,8 +20,11 @@ import static org.testng.Assert.assertTrue;
 
 public class BTVN_Day17 extends commonBase {
     @BeforeMethod
-    public void openBrowser() {
-        driver = initChromeDriver(CT_PageURL.MEDIAMART_URL);
+    @Parameters("browser")
+    public void openBrowser(String browser) {
+        driver = setupDriver(browser);
+        driver.get(CT_PageURL.MEDIAMART_URL);
+//        driver = initEdgeDriver(CT_PageURL.MEDIAMART_URL);
     }
 
     @Test
